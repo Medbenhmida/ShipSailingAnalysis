@@ -13,6 +13,7 @@ load_ships_data <- function(path = "https://github.com/Medbenhmida/ShipSailingAn
 #' 
 #' @return data.frame with distance between consecutive observations
 distance <- function() {
+  ships_data=  ships_data[order(as.Date(ships_data$DATETIME)),]
   ships_data=  ships_data %>% mutate(ships_data, 
          Distance = distHaversine(cbind(ships_data$LON, ships_data$LAT),
                                   cbind(lag(ships_data$LON), lag(ships_data$LAT)))) %>% 
